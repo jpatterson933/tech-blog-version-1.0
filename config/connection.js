@@ -3,11 +3,6 @@ const Sequelize = require('sequelize');
 let sequelize;
 //we require dotenv so we can store our name, user and password in a separate file
 require('dotenv').config();
-if (process.env.JAWSDB_URL) {
-  sequelize = new Sequelize(
-    process.env.JAWSDB_URL
-  )
-} else {
   sequelize = new Sequelize(
     //name of the database
     process.env.DB_NAME,
@@ -24,7 +19,6 @@ if (process.env.JAWSDB_URL) {
       port: 3306,
     }
   );
-}
 
 //once sequelize has been established, we want to export it
 module.exports = sequelize;
