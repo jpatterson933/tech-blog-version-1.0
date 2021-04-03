@@ -13,7 +13,7 @@ router.get('/login', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        res.render('home');
+        res.render('home', {loggedIn: req.session.loggedIn});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
 router.get('/dash', async (req, res) => {
     try {
-        res.render('dash');
+        res.render('dash', {loggedIn: req.session.loggedIn});
 
     } catch (err) {
         console.log(err);

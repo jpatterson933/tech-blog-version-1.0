@@ -18,7 +18,7 @@ const userLogin = async (event) => {
             alert("Failed to Login");
         }
     }
-}
+};
 
 const signupForm = async (event) => {
     event.preventDefault();
@@ -44,3 +44,7 @@ const signupForm = async (event) => {
 document   
     .querySelector(".login-form")
     .addEventListener('submit', userLogin)
+
+document
+    .querySelector(".signup")
+    .addEventListener('submit', signupForm)

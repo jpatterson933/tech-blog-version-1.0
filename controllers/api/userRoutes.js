@@ -13,12 +13,17 @@ router.post('/', async (req, res) => {
 
         req.session.save(() => {
             req.session.loggedIn = true;
-
-            res.status(200).json(dbUserInfo);
+            res
+            .status(200)
+            .json(dbUserInfo);
+            console.log(dbUserInfo);
         });
+
     } catch (err) {
         console.log(err);
-        // res.status.json(err);
+        res
+            .status(500)
+            .json(err);
     };
 });
 
@@ -31,13 +36,11 @@ router.post('/login', async (req, res) => {
                 username: req.body.username,
             },
         });
-
         if (!dbUserData) {
             res.status(400)
                 .json({message: 'User does not exist'});
             return;
         }
-
         const validPassword = await dbUserData.checkPassword(req.body.password);
 
         if (!validPassword){
@@ -45,7 +48,7 @@ router.post('/login', async (req, res) => {
                 .json({message: 'Incorrect username or password. Please try again'});
                 return;
         }
-
+        
         req.session.save(() => {
             req.session.loggedIn = true;
 
@@ -62,9 +65,13 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
+        //destroy current session
         req.session.destroy(() => {
-            res.status(304).end();
-        });
+             res
+            .status(304)
+            .end() });
+    
+            
     } else {
         res.status(404).end();
     }
