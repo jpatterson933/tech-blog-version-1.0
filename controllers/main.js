@@ -1,7 +1,7 @@
 //Here we require our router to set up the router through controllers
 const router = require('express').Router();
 
-router.get('/', async (req, res) => {
+router.get('/login', async (req, res) => {
     try {
         res.render('login');
         
@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     };
 });
 
-router.get('/home', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         res.render('home');
     } catch (err) {
@@ -29,5 +29,14 @@ router.get('/dash', async (req, res) => {
         res.status(500).json(err);
     };
 });
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('login');
+})
 
 module.exports = router;

@@ -30,7 +30,7 @@ User.init (
             },
         },
         stayLogged: {
-            type: Boolean,
+            type: DataTypes.BOOLEAN,
 
         }
     },
