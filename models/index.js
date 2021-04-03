@@ -1,8 +1,6 @@
-const Users = require('./users')
-
-
+const User = require('./users')
 
 
 module.exports = { 
-    Users, 
+    User, 
 };
