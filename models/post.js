@@ -19,9 +19,6 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        date: {
-            type: DataTypes.DATEONLY,
-        },
         post_id: {
             type: DataTypes.INTEGER,
             references: {

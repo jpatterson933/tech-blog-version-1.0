@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
 });
 
 //login
-
 router.post('/login', async (req, res) => {
     try {
         const dbUserData = await User.findOne({
@@ -40,6 +39,7 @@ router.post('/login', async (req, res) => {
             },
         });
         if (!dbUserData) {
+            console.log("no user")
             res.status(400)
                 .json({message: 'User does not exist'});
             return;
