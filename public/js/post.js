@@ -3,13 +3,14 @@ const createBlog = async (event) => {
 
     const title = document.querySelector("#blog-title").value.trim();
     const content = document.querySelector("#blog-content").value.trim();
+    const username = localStorage.getItem("username");
 
     if (title && content) {
         console.log(title)
         console.log("This is working!")
         fetch ('/api/post', {
             method: 'POST',
-            body: JSON.stringify({ title, content }),
+            body: JSON.stringify({ title, content, username }),
             headers: { 'Content-Type': 'application/json' },
         })
         .then(response => {

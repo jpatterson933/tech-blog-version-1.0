@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User } = require('../../models');
 
 router.get('/', async (req, res) => {
     const dbPostData = await Post.findAll()
@@ -8,7 +8,30 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    Post.create(req.body)
+
+    //find user 
+    const user = await User.findOne( {
+        where: {
+            username: req.body.username,
+        }
+    })
+
+    console.log("this is new", user)
+    
+    // const user = await User.findByPk(req.session.id)
+    // if (user === null) {
+    //     res.status(401).json("not logged in")
+    //     return;
+    // } 
+
+    // console.log(req.session.id)
+    // console.log("Hello router.post('/'", user)
+
+    Post.create({
+        title: req.body.title,
+        content: req.body.content,
+        user_id: user.id,
+    })
     .then(response => {
         console.log(response);
         res
