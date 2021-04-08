@@ -37,8 +37,8 @@ router.get('/dash', async (req, res) => {
         const postData = await Post.findAll();
         console.log(postData)
         const myPost = postData.map(posts => posts.get({ plain: true }));
-        console.log(myPost)
-        res.render('dash', { myPost })
+        console.log(myPost, "this is mapped")
+        res.render('dash', { myPost, loggedIn: req.session.loggedIn })
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
