@@ -54,6 +54,10 @@ router.post('/login', async (req, res) => {
         
         req.session.save(() => {
             req.session.loggedIn = true;
+            
+            req.session.user_id = dbUserData.id;
+            //you can create any variable here and refer to the properties of the user and save that in the session and then
+            //later on refer to it within the other routes
 
             res.status(200)
                 .json({ user: dbUserData, message: 'You are logged in!' });
