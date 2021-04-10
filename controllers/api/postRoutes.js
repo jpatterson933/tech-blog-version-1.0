@@ -7,39 +7,7 @@ router.get('/', async (req, res) => {
     res.render('post')
 })
 
-//this route will be responsible for finding the post that was clicked on and rendering it on our edit-post page
-router.get('/:id', async (req, res) => {
-    try {
-        const dbPostData = await Post.findByPk(req.params.id);
-        const post = dbPostData.get({ plain: true });
-        console.log(post, "is this working?")
 
-        res.render('edit-post', {post, loggedIn: req.session.loggedIn});
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err)
-    }
-})
-
-
-//this route will be responsible for updating the posts in the post api
-router.put('/:id', async (req,res) => {
-    try {
-        const post = await Post.update(
-            {
-                title: req.body.title,
-                content: req.body.content,
-            },
-            {
-                where: {
-                    id: req.params.id,
-                },
-            });
-            res.status(200).json(post);
-    } catch (err) {
-        res.status(500).json(err);
-    };
-});
 
 
 //this route is responsible for creating a new post and storing it in our post api

@@ -1,6 +1,5 @@
 
 {{#each myPost as | post | }}
-  {{post.content}}
     <div class="card-header">
         -0-
     </div>
@@ -11,9 +10,9 @@
           <div class="form-group">
               <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
           </div>
-          <a href="/dash/edit-post" class="link-dark">Edit Post</a>
+          <a href="/dash/edit-post/{{post.id}}" class="link-dark">Edit Post</a>
     </div>
-    <div class="card-footer text-muted">
+    <div class="card-footer">
       {{post.created_at}}
     </div>
 
