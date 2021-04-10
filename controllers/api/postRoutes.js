@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
 
 
 //this route will be responsible for updating the posts in the post api
-router.put('/api/post/:id', async (req,res) => {
+router.put('/:id', async (req,res) => {
     try {
         const post = await Post.update(
             {
@@ -42,7 +42,7 @@ router.put('/api/post/:id', async (req,res) => {
 });
 
 
-//this route is responsible for createing a new post and storing it in our post api
+//this route is responsible for creating a new post and storing it in our post api
 router.post('/', async (req, res) => {
     //find user 
     const user = await User.findOne( {

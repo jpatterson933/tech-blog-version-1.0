@@ -21,9 +21,6 @@ router.get('/', async (req, res) => {
     };
 });
 
-//this route will be responsible for finding the post that was clicked on and rendering it on our edit-post page
-
-
 
 
 //this rout is responsidble for finding the user and the posts associated with that user and displaying them on the dash page
