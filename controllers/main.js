@@ -21,37 +21,24 @@ router.get('/', async (req, res) => {
     };
 });
 
-// router.get('/dash', async (req, res) => {
-//     try {
-//         res.render('dash', {loggedIn: req.session.loggedIn});
-
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json(err);
-//     };
-// });
+//this route will be responsible for finding the post that was clicked on and rendering it on our edit-post page
 
 
+
+
+//this rout is responsidble for finding the user and the posts associated with that user and displaying them on the dash page
 router.get('/dash', async (req, res) => {
     try {
-        
         let userData = await User.findOne({ 
             where: {
                 id: req.session.user_id
             },
+            //here we include the post that belongs to the user_id
             include: Post
         });
-        
         let myPost = userData.get({ plain: true });
-
-        console.log(myPost)
-
         myPost = myPost.posts;
-
-            res.render('dash', { myPost, loggedIn: req.session.loggedIn })
-        
-
-        
+            res.render('dash', { myPost, loggedIn: req.session.loggedIn })    
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

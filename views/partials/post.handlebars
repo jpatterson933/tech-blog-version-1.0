@@ -11,13 +11,11 @@
           <div class="form-group">
               <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
           </div>
-          <button class="btn btn-primary" type="submit">Comment</button>
+          <a href="/dash/edit-post" class="link-dark">Edit Post</a>
     </div>
     <div class="card-footer text-muted">
       {{post.created_at}}
     </div>
 
-  
-  
 {{/each}}
 
