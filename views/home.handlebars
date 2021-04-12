@@ -1,32 +1,6 @@
-{{!-- ---------------------------------------------FOR EACH LOOP-------------------------------------- --}}
-  <div class="card text-center">
-  <div class="card-header">
-    UserName TotalScore
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Title of article</h5>
-    <p class="card-text">Content of article</p>
-    <a href="#" class="btn btn-primary">Talk Tech</a>
-  </div>
-  <div class="card-footer text-muted">
-    Date posted Post: Score
-  </div>
-    <br>
-    <a href="#" class="btn btn-primary">Leave Comment</a>
-    
 
-  {{!-- ---------------------------------------------FOR EACH LOOP-------------------------------------- --}}
-  <div class="card text-center">
-  <div class="card-header">
-    UserName TotalScore
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Title of article</h5>
-    <p class="card-text">Content of article</p>
-    <a href="#" class="btn btn-primary">Talk Tech</a>
-  </div>
-  <div class="card-footer text-muted">
-    Date posted Post: Score
-  </div>
-    <br>
-    <a href="#" class="btn btn-primary">Leave Comment</a>
+{{#if loggedIn}}
+{{> all}}
+{{else}}
+<h1>Please login to view posts!</h1>
+{{/if}}

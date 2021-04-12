@@ -1,22 +1,20 @@
-
 <form class="update-post">
-
   <div class="card-header">
     Update your blog
   </div>
   <div class="card-header">
-      -0-
+    -0-
   </div>
   <div>
-        <div class="form-group">
-        
-            <input type="input" class="form-control" id="edit-title" style="color: black" value="{{post.title}}">
-        </div>
-        <div class="form-group">
-            <input type="input" class="form-control" id="edit-content" rows="3" style="color: black" value="{{post.content}}"></input>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit Edit</button>
+    <div class="form-group">
+      <div type="text" value="{{post.id}}"></div>
+
+      <input type="input" class="form-control" id="edit-title" style="color: black" value="{{post.title}}">
+    </div>
+    <div class="form-group">
+      <input type="input" class="form-control" id="edit-content" rows="3" style="color: black"
+        value="{{post.content}}"></input>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit Edit</button>
   </div>
 </form>
-
-<script src="./js/edit-post.js"></script>
