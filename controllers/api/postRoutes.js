@@ -8,8 +8,6 @@ router.get('/', async (req, res) => {
 })
 
 
-
-
 //this route is responsible for creating a new post and storing it in our post api
 router.post('/', async (req, res) => {
     //find user 

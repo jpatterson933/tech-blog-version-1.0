@@ -12,7 +12,7 @@ const editPostHandler = async (event) => {
   console.log(id)
 
   // The Controller will handle this 'put' request.
-  const response = await fetch(`/dash/post/${id}`, {
+  const response = await fetch(`/dash/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
       title,

@@ -1,11 +1,12 @@
 const router = require('express').Router();
 
+//folder
 const apiRoutes = require('./api');
+
+//files
 const main = require('./main');
-const dash = require('./dash');
 
 router.use('/', main);
-router.use('/dash', dash);
 router.use('/api', apiRoutes);
 
 

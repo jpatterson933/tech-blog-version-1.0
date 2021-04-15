@@ -10,10 +10,10 @@
           <div class="form-group">
               <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
           </div>
-          <a href="/dash/edit-post/{{post.id}}" class="link-dark">Edit Post</a>
+          <a href="/dash/view/{{post.id}}" class="link-dark">View Post</a>
     </div>
     <div class="card-footer">
-      {{post.created_at}}
+      Eact Moment of Post: {{post.createdAt}}
     </div>
 
 {{/each}}

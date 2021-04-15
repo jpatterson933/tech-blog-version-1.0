@@ -24,9 +24,15 @@ router.get('/', async (req, res) => {
     };
 });
 
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
 
+    res.render('login');
+})
 
-//this rout is responsidble for finding the user and the posts associated with that user and displaying them on the dash page
 router.get('/dash', async (req, res) => {
     try {
         let userData = await User.findOne({ 
@@ -45,14 +51,79 @@ router.get('/dash', async (req, res) => {
     }
 });
 
+router.get('/dash/:id', async (req, res) => {
+    try {
+        const dbPostData = await Post.findByPk(req.params.id);
+        const post = dbPostData.get({ plain: true });
+        console.log(post)
 
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+        const scripts = "/js/edit-post.js";
+
+        res.render('edit-post', {post, loggedIn: req.session.loggedIn, scripts });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
     }
-
-    res.render('login');
 })
+
+
+//i want this to be the delete route
+router.delete('/dash/:id', async (req, res) => {
+    try {
+      const postData = await Post.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+  
+      if (!postData) {
+        res.status(404).json({ message: 'No post found with this id!' });
+        return;
+      }
+  
+      res.status(200).json(postData);
+
+      res.render('dash')
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+//this route will be responsible for updating the posts in the post api
+router.put('/dash/:id', async (req,res) => {
+    try {
+        const post = await Post.update(
+            {
+                title: req.body.title,
+                content: req.body.content,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            });
+            res.status(200).json(post);
+
+            res.render('dash', {post, loggedIn: req.session.loggedIn})
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+router.get('/dash/view/:id', async (req, res) => {
+    try {
+
+        
+        const dbPostData = await Post.findByPk(req.params.id);
+        const post = dbPostData.get({ plain: true });
+        console.log(post)
+
+        res.render('view-post', {post, loggedIn: req.session.loggedIn });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+})
+
 
 module.exports = router;

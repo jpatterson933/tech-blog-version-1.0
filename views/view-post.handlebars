@@ -1,0 +1,15 @@
+<div class="card-header">
+    -0-
+</div>
+<div>
+        <div class="form-group">
+            <text type="text" class="form-control" id="blog-title" placeholder="Tech Title"> {{post.title}}
+        </div>
+        <div class="form-group">
+            <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
+        </div>
+</div>
+<div class="card-footer">
+    {{post.createdAt}} Created By: {{post.username}}
+</div>
+        <a href="/dash/view/{{post.id}}" class="link-dark">Leave Comment</a>
