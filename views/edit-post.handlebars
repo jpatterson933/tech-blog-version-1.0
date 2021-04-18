@@ -19,7 +19,11 @@
         value="{{post.content}}">
     </div>
     <button class="btn btn-primary" type="submit">Submit Edit</button>
-    {{!-- this will delete the post --}}
-    <button class="btn btn-dangerous" type="submit">Delete Post</button>
+    
+    <div class="post-list">
+      {{!-- this will delete the post --}}
+      <button class="btn btn-sm btn-danger" data-id="{{post.id}}">Delete Post</button>
+
+    </div>
   </div>
 </form>

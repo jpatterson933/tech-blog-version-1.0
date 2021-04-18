@@ -33,7 +33,13 @@ router.get('/login', (req, res) => {
     res.render('login');
 })
 
+//need to figure out how to render the dash when the user has no posts!
+// router.get('/dash', async (req, res) => {
+
+// })
+//--------------------------------how to render page if results are null-----------------
 router.get('/dash', async (req, res) => {
+    // res.render('dash', {loggedIn: req.session.loggedIn})
     try {
         let userData = await User.findOne({ 
             where: {
@@ -44,8 +50,12 @@ router.get('/dash', async (req, res) => {
         });
         let myPost = userData.get({ plain: true });
         myPost = myPost.posts;
+        // if (myPost !== null) {
             res.render('dash', { myPost, loggedIn: req.session.loggedIn })    
-    } catch (err) {
+        // }
+        // res.render('dash', { loggedIn: req.session.loggedIn }) 
+    } 
+    catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
@@ -55,7 +65,6 @@ router.get('/dash/:id', async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
         const post = dbPostData.get({ plain: true });
-        console.log(post)
 
         const scripts = "/js/edit-post.js";
 
@@ -70,18 +79,20 @@ router.get('/dash/:id', async (req, res) => {
 //i want this to be the delete route
 router.delete('/dash/:id', async (req, res) => {
     try {
-      const postData = await Post.destroy({
-        where: {
-          id: req.params.id,
-        },
-      });
+        const postData = await Post.destroy({
+            where: {
+            id: req.params.id,
+            },
+        });
+        console.log(postData, "this is the post data!!--------------");
   
       if (!postData) {
         res.status(404).json({ message: 'No post found with this id!' });
         return;
       }
-  
       res.status(200).json(postData);
+
+      const scripts = "/js/edit-post.js";
 
       res.render('dash')
     } catch (err) {
@@ -113,12 +124,12 @@ router.put('/dash/:id', async (req,res) => {
 router.get('/dash/view/:id', async (req, res) => {
     try {
 
-        
+        const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
         const post = dbPostData.get({ plain: true });
         console.log(post)
 
-        res.render('view-post', {post, loggedIn: req.session.loggedIn });
+        res.render('view-post', {post, loggedIn: req.session.loggedIn, scripts });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)

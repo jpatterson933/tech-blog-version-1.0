@@ -1,20 +1,21 @@
 
-{{#each myPost as | post | }}
-    <div class="card-header">
-        -0-
-    </div>
-    <div>
-          <div class="form-group">
-              <text type="text" class="form-control" id="blog-title" placeholder="Tech Title"> {{post.title}}
-          </div>
-          <div class="form-group">
-              <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
-          </div>
-          <a href="/dash/{{post.id}}" class="link-dark">Edit Post</a>
-    </div>
-    <div class="card-footer">
-      Posted: {{post.createdAt}}
-    </div>
+    {{#each myPost as | post | }}
+        <div class="card-header">
+            -0-
+        </div>
+        <div>
+            <div class="form-group">
+                <text type="text" class="form-control" id="blog-title" placeholder="Tech Title"> {{post.title}}
+            </div>
+            <div class="form-group">
+                <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
+            </div>
+            <a href="/dash/{{post.id}}" class="link-dark">Edit Post</a>
+        </div>
+        <div class="card-footer">
+        Posted: {{post.createdAt}}
+        </div>
+    {{/each}}
+ 
 
-{{/each}}
 

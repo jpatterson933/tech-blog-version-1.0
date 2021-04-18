@@ -12,4 +12,12 @@
 <div class="card-footer">
     {{post.createdAt}} Created By: {{post.username}}
 </div>
-        <a href="/dash/view/{{post.id}}" class="link-dark">Leave Comment</a>
+
+<form class="comment">
+        <div class="form-group">
+            <input type="input" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech..."></input>
+        </div>
+        <a href="/dash/view/{{post.id}}" class="link-dark" type="submit" id="comment-content">Leave Comment</a>
+</form>
+
+{{> comment}}

@@ -9,7 +9,6 @@ const editPostHandler = async (event) => {
     window.location.toString().split('/').length - 1
   ];
 
-  console.log(id)
 
   // The Controller will handle this 'put' request.
   const response = await fetch(`/dash/${id}`, {
@@ -29,7 +28,31 @@ const editPostHandler = async (event) => {
     alert('Failed to edit post');
   }
 }
-//--------------------------------------------------here we will add our edit post function---------------------
+//--------------------------------------------------here we will add our DELETE post function---------------------
+const delButtonHandler = async (event) => {
+
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+    console.log(id, "new test")
+
+    const response = await fetch(`/dash/${id}`, {
+      method: 'DELETE',
+    });
+    console.log(response, "this is the response for the day!------------------")
+    if (response.ok) {
+      document.location.replace('/dash');
+      alert("this worked")
+    } else {
+      alert('Failed to delete post');
+    }
+  }
+};
+console.log(delButtonHandler)
+document
+  .querySelector('.post-list')
+  .addEventListener('click', delButtonHandler)
+
+
 document
   .querySelector(".update-post")
   .addEventListener('submit', editPostHandler)
