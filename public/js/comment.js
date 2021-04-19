@@ -1,7 +1,7 @@
 const createComment = async (event) => {
     event.preventDefault();
     
-    const comment = document.querySelector("#blog-content").trim();
+    const comment = document.querySelector("#new-blog-content").value;
     const username = localStorage.getItem("username");
 
     if (comment) {
@@ -16,6 +16,7 @@ const createComment = async (event) => {
             if (response.ok) {
                 alert("this worked!");
                 document.location.reload();
+                
                 console.log(response);
                 return response.json();
             } else {
@@ -25,7 +26,7 @@ const createComment = async (event) => {
     }
 }
 
-console.log("comment.js status: connected, fileType: javascript");
+console.log("comment.js status: connected, fileType: javascript  -- ITS ON THE PAGE BUT IT DOESNT WORK!!");
 
 document
     .querySelector(".comment")

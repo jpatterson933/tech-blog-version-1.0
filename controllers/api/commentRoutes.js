@@ -17,18 +17,11 @@ router.get('/', async (req, res) => {
 //this route is responsible for creating a new post and storing it in our post api
 router.post('/', async (req, res) => {
     try {
-        const user = await User.findOne({
-            where: {
-                username: req.body.username,
-            },
-        });
+
       const newComment = await Comment.create({
         ...req.body,
-        user_id: user.id,
       });
-
-      console.log(newComment)
-  
+        
       res.status(200).json(newComment);
     } catch (err) {
       res.status(400).json(err);
