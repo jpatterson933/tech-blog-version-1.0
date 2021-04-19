@@ -1,16 +1,15 @@
 const createComment = async (event) => {
     event.preventDefault();
-
     
-    const content = document.querySelector("#comment-content").value.trim();
+    const comment = document.querySelector("#blog-content").trim();
     const username = localStorage.getItem("username");
 
-    if (title && content) {
-        console.log(title)
+    if (comment) {
+        console.log(comment)
         console.log("This is working!")
         fetch ('/api/comment', {
             method: 'POST',
-            body: JSON.stringify({ content, username }),
+            body: JSON.stringify({ comment, username }),
             headers: { 'Content-Type': 'application/json' },
         })
         .then(response => {
@@ -22,12 +21,11 @@ const createComment = async (event) => {
             } else {
                 alert("Comment failed!");
             }
-
-
         })
-    
     }
 }
+
+console.log("comment.js status: connected, fileType: javascript");
 
 document
     .querySelector(".comment")

@@ -1,6 +1,6 @@
 //Here we require our router to set up the router through controllers
 const router = require('express').Router();
-const { User, Post} = require('../models');
+const { User, Post, Comment} = require('../models');
 
 router.get('/login', async (req, res) => {
     try {
@@ -76,7 +76,7 @@ router.get('/dash/:id', async (req, res) => {
 })
 
 
-//i want this to be the delete route
+//this is our route to delete posts
 router.delete('/dash/:id', async (req, res) => {
     try {
         const postData = await Post.destroy({
@@ -114,27 +114,37 @@ router.put('/dash/:id', async (req,res) => {
                 },
             });
             res.status(200).json(post);
-
             res.render('dash', {post, loggedIn: req.session.loggedIn})
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
+//this route is responsible for rendering the contents of our /dash/view/:id of the post page --still need to render only the posts comments--
 router.get('/dash/view/:id', async (req, res) => {
     try {
-
+        
         const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
-        const post = dbPostData.get({ plain: true });
-        console.log(post)
 
-        res.render('view-post', {post, loggedIn: req.session.loggedIn, scripts });
+        const post = dbPostData.get({ plain: true });
+
+        const commentData = await Comment.findAll();
+        const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+        res.render('view-post', {post, comments, loggedIn: req.session.loggedIn, scripts });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
     }
-})
+});
+
+
+module.exports = router;
+
+
+
+
 
 
 module.exports = router;

@@ -1,0 +1,13 @@
+<div>
+
+        {{#each comments as | comment | }}
+            <div class="card">
+                <div class="card-body">
+                    {{comment.comment}}
+                </div>
+                    <li class="list-group-item">Posted: {{comment.createdAt}}</li>
+                    <li class="list-group-item">{{comment.user_id}}</li>
+            </div>
+        {{/each}}
+
+</div>
