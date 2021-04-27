@@ -1,5 +1,7 @@
 
     {{#each myPost as | post | }}
+    <div class="card all-cards">
+
         <div class="card-header">
             {{post.username}}
             -0-
@@ -16,6 +18,8 @@
         <div class="card-footer">
         Posted: {{post.createdAt}}
         </div>
+
+    </div>
     {{/each}}
 
 

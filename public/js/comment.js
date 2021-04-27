@@ -16,8 +16,7 @@ const createComment = async (event) => {
             if (response.ok) {
                 alert("this worked!");
                 document.location.reload();
-                
-                console.log(response);
+                   console.log(response);
                 return response.json();
             } else {
                 alert("Comment failed!");

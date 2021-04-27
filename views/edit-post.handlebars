@@ -1,29 +1,31 @@
 <form class="update-post">
-  <div class="card-header">
-    Update your blog
-  </div>
-  <div class="card-header">
-    -0-
-  </div>
-  <div>
-    <div class="form-group">
-
-      {{!-- we plug the value of the post id in so we can access it in our public javascript folder --}}
-      <div type="text" value="{{post.id}}"></div>
-
-      <input type="input" class="form-control" id="edit-title" style="color: black" value="{{post.title}}">
+  <div class="card all-cards">
+    <div class="card-header">
+      Update your blog
     </div>
-    <div class="form-group">
-      {{!-- we put the post content in the value so the user can edit the original post typed --}}
-      <input type="input" class="form-control" id="edit-content" rows="3" style="color: black"
-        value="{{post.content}}">
+    <div class="card-header">
+      -0-
     </div>
-    <button class="btn btn-primary" type="submit">Submit Edit</button>
-    
-    <div class="post-list">
-      {{!-- this will delete the post --}}
-      <button class="btn btn-sm btn-danger" data-id="{{post.id}}">Delete Post</button>
+    <div>
+      <div class="form-group">
 
+        {{!-- we plug the value of the post id in so we can access it in our public javascript folder --}}
+        <div type="text" value="{{post.id}}"></div>
+
+        <input type="input" class="form-control" id="edit-title" style="color: black" value="{{post.title}}">
+      </div>
+      <div class="form-group">
+        {{!-- we put the post content in the value so the user can edit the original post typed --}}
+        <input type="input" class="form-control" id="edit-content" rows="3" style="color: black"
+          value="{{post.content}}">
+      </div>
+      <button class="btn btn-primary" type="submit">Submit Edit</button>
+      
+      <div class="post-list">
+        {{!-- this will delete the post --}}
+        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">Delete Post</button>
+
+      </div>
     </div>
   </div>
 </form>
