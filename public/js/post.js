@@ -14,16 +14,14 @@ const createBlog = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         })
         .then(response => {
+            console.log(response);
             if (response.ok) {
-                alert("this worked!");
+                alert("You have successfully posted your content!");
                 document.location.replace('/dash');
-                console.log(response);
-                // return response.json();
+                return response.json();
             } else {
                 alert("Post failed!");
             }
-
-
         })
     
     }

@@ -35,6 +35,7 @@ const signupForm = async (event) => {
         });
 
         if (response.ok) {
+            localStorage.setItem("username", username)
             document.location.replace('/');
         } else {
             alert("Signup failed!");

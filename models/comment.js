@@ -16,7 +16,7 @@ Comment.init(
             allowNull: false,
         },
         username: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         post_id: {

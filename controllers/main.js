@@ -50,6 +50,7 @@ router.get('/dash', async (req, res) => {
         });
         let myPost = userData.get({ plain: true });
         myPost = myPost.posts;
+        console.log(myPost, "THIS IS MY POST CONSOLE LOG TECH BLOG NEWS")
         // if (myPost !== null) {
             res.render('dash', { myPost, loggedIn: req.session.loggedIn })    
         // }
@@ -64,6 +65,7 @@ router.get('/dash', async (req, res) => {
 router.get('/dash/:id', async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
+        console.log("testing123456")
         const post = dbPostData.get({ plain: true });
 
         const scripts = "/js/edit-post.js";
@@ -138,13 +140,6 @@ router.get('/dash/view/:id', async (req, res) => {
         res.status(500).json(err)
     }
 });
-
-
-module.exports = router;
-
-
-
-
 
 
 module.exports = router;

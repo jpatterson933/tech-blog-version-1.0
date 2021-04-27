@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
     Post.create({
         title: req.body.title,
         content: req.body.content,
+        username: req.body.username,
         user_id: user.id,
     })
     .then(response => {
