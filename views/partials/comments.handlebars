@@ -1,19 +1,17 @@
 <div>
-
-        {{#each comments as | comment | }}
-            <div class="card all-cards">
-                <div class="card-body">
-                    {{comment.comment}}
-                </div>
-                  <div class="card-footer justify-content-between">
-                        <div class="col-6">
-                        {{comment.createdAt}}
-                        </div>
-                        <div class="col-6">
-                            Comment By: {{comment.username}}
-                        </div>
-                    </div>
+    {{#each comments as | comment | }}
+    <div class="card all-cards">
+        <div class="card-header col-12">
+            User: {{comment.username}}
+        </div>
+        <div class="card-body">
+            {{comment.comment}}
+        </div>
+        <div class="card-footer justify-content-between">
+            <div class="col-6">
+                Posted: {{comment.createdAt}}
             </div>
-        {{/each}}
-
+        </div>
+    </div>
+    {{/each}}
 </div>

@@ -5,3 +5,11 @@
 .landing-forms {
     margin: 0 auto;
 }
+
+.page-title {
+    margin-left: 14px;
+}
+
+.view-post {
+    text-align: center;
+}
