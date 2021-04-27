@@ -3,7 +3,6 @@
     <div class="card all-cards">
 
         <div class="card-header">
-            {{post.username}}
             -0-
         </div>
         <div>
@@ -15,9 +14,14 @@
             </div>
             <a href="/dash/{{post.id}}" class="link-dark">Edit Post</a>
         </div>
-        <div class="card-footer">
+         <div class="card-footer justify-content-between">
+        <div class="col-6">
         Posted: {{post.createdAt}}
         </div>
+        <div class="col-6">
+            Created By: {{post.username}}
+        </div>
+    </div>
 
     </div>
     {{/each}}

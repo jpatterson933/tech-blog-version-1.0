@@ -1,6 +1,6 @@
-<div>
+<div class="card all-cards">
     <div class="card-header">
-        -0-
+       Current Post
     </div>
     <div>
             <div class="form-group">
@@ -10,15 +10,20 @@
                 <text type="text" class="form-control" id="blog-content" rows="3" placeholder="Your take on tech...">{{post.content}}</text>
             </div>
     </div>
-    <div class="card-footer">
-        {{post.createdAt}} Created By: {{post.username}}
+    <div class="card-footer justify-content-between">
+        <div class="col-6">
+        {{post.createdAt}}
+        </div>
+        <div class="col-6">
+            Created By: {{post.username}}
+        </div>
     </div>
 
     <form class="comment">
             <div class="form-group">
                 <input type="input" class="form-control" id="new-blog-content" rows="3" placeholder="Comment..."></input>
             </div>
-            <button href="/dash/view/{{post.id}}" class="link-dark" type="submit">Leave Comment</button>
+            <button href="/dash/view/{{post.id}}" class="btn-primary" type="submit">Leave Comment</button>
     </form>
 </div>
 

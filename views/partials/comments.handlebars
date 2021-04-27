@@ -5,8 +5,14 @@
                 <div class="card-body">
                     {{comment.comment}}
                 </div>
-                    <li class="list-group-item">Posted: {{comment.createdAt}}</li>
-                    <li class="list-group-item">{{comment.username}}</li>
+                  <div class="card-footer justify-content-between">
+                        <div class="col-6">
+                        {{comment.createdAt}}
+                        </div>
+                        <div class="col-6">
+                            Comment By: {{comment.username}}
+                        </div>
+                    </div>
             </div>
         {{/each}}
 
