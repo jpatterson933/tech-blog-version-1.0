@@ -14,7 +14,7 @@ const createComment = async (event) => {
         })
         .then(response => {
             if (response.ok) {
-                alert("this worked!");
+                alert("Your comment has been posted!");
                 document.location.reload();
                    console.log(response);
                 return response.json();

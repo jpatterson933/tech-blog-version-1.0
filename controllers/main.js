@@ -33,13 +33,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 })
 
-//need to figure out how to render the dash when the user has no posts!
-// router.get('/dash', async (req, res) => {
-
-// })
-//--------------------------------how to render page if results are null-----------------
 router.get('/dash', async (req, res) => {
-    // res.render('dash', {loggedIn: req.session.loggedIn})
     try {
         let userData = await User.findOne({ 
             where: {
@@ -122,7 +116,7 @@ router.put('/dash/:id', async (req,res) => {
     };
 });
 
-//this route is responsible for rendering the contents of our /dash/view/:id of the post page --still need to render only the posts comments--
+//this route is responsible for rendering the contents of our /dash/view/:id of the post page --
 router.get('/dash/view/:id', async (req, res) => {
     try {
         
@@ -131,6 +125,9 @@ router.get('/dash/view/:id', async (req, res) => {
 
         const post = dbPostData.get({ plain: true });
 
+        //this is where we will nee to render the comments by post_id so the ONLY the comments for the post rener
+
+        //we are finding all the comments - we need to find the comments that only match the post ID
         const commentData = await Comment.findAll();
         const comments = commentData.map((comment) => comment.get({ plain: true }));
 
