@@ -116,12 +116,13 @@ router.put('/dash/:id', async (req,res) => {
     };
 });
 
-//this route is responsible for rendering the contents of our /dash/view/:id of the post page --
+//this route is responsible for grabbing the requested post by its id and ALL COMMENTS (need to figure out how to grab only the comments associated with this post by post_id) --
 router.get('/dash/view/:id', async (req, res) => {
     try {
         
         const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
+        console.log(dbPostData)
 
         const post = dbPostData.get({ plain: true });
 
@@ -137,6 +138,5 @@ router.get('/dash/view/:id', async (req, res) => {
         res.status(500).json(err)
     }
 });
-
 
 module.exports = router;

@@ -18,7 +18,11 @@ const sess = {
   resave: false,
   saveUninitialized: false,
   store: new SequelizeStore({
-    db: sequelize
+    db: sequelize,
+
+    //if you are inactive for 1 minute, you will be logged out.
+    checkExpirationInterval: 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds (60 seconds)
+    expiration: 60 * 1000  // The maximum age (in milliseconds) of a valid session (60seconds)
   })
 };
 

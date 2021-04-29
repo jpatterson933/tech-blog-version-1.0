@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
     try {
 
         const scripts = "/js/comment.js";
-        const commentData = await Comment.findAll();
+        const commentData = await Comment.findAll( {where: {post_id: req.params.id}} );
         res.json(commentData)
     } catch (err) {
         console.log(err);
