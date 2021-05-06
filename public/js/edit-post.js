@@ -21,6 +21,7 @@ const editPostHandler = async (event) => {
     },
   });
   if (response.ok) {
+    alert('Edit successful!');
     document.location.replace(`/dash`);
   } else {
     alert('Failed to edit post');
@@ -34,10 +35,10 @@ const delButtonHandler = async (event) => {
       method: 'DELETE',
     });
     if (response.ok) {
-      document.location.replace('/dash');
       alert("Your post has been deleted!")
+      document.location.replace('/dash');
     } else {
-      alert('Failed to delete post!');
+      alert('Failed to delete!');
     }
   }
 };
