@@ -33,14 +33,15 @@ const editPostHandler = async (event) => {
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
-    const response = await fetch(`/dash/${id}`, {
+    const res = await fetch(`/dash/${id}`, {
       method: 'DELETE',
     });
-    if (!response.ok) {
+    if (!res.ok) {
       alert('Failed to delete!');
     } else {
       alert("Your post has been deleted!")
       document.location.replace('/dash');
+      return;
     }
   }
 };
