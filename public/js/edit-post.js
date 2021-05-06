@@ -1,4 +1,4 @@
-//--------------------------------------------------here we will add our edit post function---------------------
+//this funciton is responsible for editing a post
 const editPostHandler = async (event) => {
   event.preventDefault();
   const title = document.querySelector("#edit-title").value.trim();
@@ -9,8 +9,7 @@ const editPostHandler = async (event) => {
     window.location.toString().split('/').length - 1
   ];
 
-
-  // The Controller will handle this 'put' request.
+  // The Controller will handle this 'put' request when editing a post
   const response = await fetch(`/dash/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -21,38 +20,31 @@ const editPostHandler = async (event) => {
       'Content-Type': 'application/json',
     },
   });
- 
   if (response.ok) {
     document.location.replace(`/dash`);
   } else {
     alert('Failed to edit post');
   }
 }
-//--------------------------------------------------here we will add our DELETE post function---------------------
+//this funciton is repsonible for deleting posts
 const delButtonHandler = async (event) => {
-
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
-    console.log(id, "new test")
-
     const response = await fetch(`/dash/${id}`, {
       method: 'DELETE',
     });
-    console.log(response, "this is the response for the day!------------------")
     if (response.ok) {
       document.location.replace('/dash');
-      alert("this worked")
+      alert("Your post has been deleted!")
     } else {
-      alert('Failed to delete post');
+      alert('Failed to delete post!');
     }
   }
 };
-console.log(delButtonHandler)
+
 document
   .querySelector('.post-list')
   .addEventListener('click', delButtonHandler)
-
-
 document
   .querySelector(".update-post")
   .addEventListener('submit', editPostHandler)

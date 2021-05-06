@@ -1,10 +1,9 @@
+//this function is responsible for loging the user out
 const logout = async () => {
-    console.log("testing")
     const response = await fetch('/api/user/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     });
-
     if (!response.ok) {
         document.location.replace('/login');
         alert('You have logged out!!');
@@ -17,4 +16,3 @@ const logout = async () => {
 document
     .querySelector('#logout')
     .addEventListener('click', logout);
-

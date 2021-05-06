@@ -2,6 +2,7 @@
 const router = require('express').Router();
 const { User, Post, Comment} = require('../models');
 
+//this route is reponsible for rendering the login page
 router.get('/login', async (req, res) => {
     try {
         res.render('login');
@@ -12,11 +13,12 @@ router.get('/login', async (req, res) => {
     };
 });
 
+//this route is reponsible for rendering all the posts on the main page
 router.get('/', async (req, res) => {
     try {
         const dbPostData = await Post.findAll();
         const post = dbPostData.map((posts) => posts.get({ plain: true }));
-
+        //it will render the home page, the posts and the user who is logged in
         res.render('home', {post, loggedIn: req.session.loggedIn});
     } catch (err) {
         console.log(err);
@@ -24,15 +26,15 @@ router.get('/', async (req, res) => {
     };
 });
 
+//this route is responible for redirection the user if they are logged in else they will be sent to the login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
-
     res.render('login');
 })
-
+//this route is reponsible for rendering the dashboard page based off of whichever user is logged in
 router.get('/dash', async (req, res) => {
     try {
         let userData = await User.findOne({ 
@@ -45,10 +47,7 @@ router.get('/dash', async (req, res) => {
         let myPost = userData.get({ plain: true });
         myPost = myPost.posts;
         console.log(myPost, "THIS IS MY POST CONSOLE LOG TECH BLOG NEWS")
-        // if (myPost !== null) {
             res.render('dash', { myPost, loggedIn: req.session.loggedIn })    
-        // }
-        // res.render('dash', { loggedIn: req.session.loggedIn }) 
     } 
     catch (err) {
         console.log(err);
@@ -56,12 +55,12 @@ router.get('/dash', async (req, res) => {
     }
 });
 
+//this route is respnsible for rednering a specific post that has been chosen by the dash
 router.get('/dash/:id', async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
-        console.log("testing123456")
         const post = dbPostData.get({ plain: true });
-
+        //we connect our specific public javascript file with the rendered page
         const scripts = "/js/edit-post.js";
 
         res.render('edit-post', {post, loggedIn: req.session.loggedIn, scripts });
@@ -122,16 +121,10 @@ router.get('/dash/view/:id', async (req, res) => {
         
         const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
-        console.log(dbPostData)
-
         const post = dbPostData.get({ plain: true });
-
-        //this is where we will nee to render the comments by post_id so the ONLY the comments for the post rener
-
-        //we are finding all the comments - we need to find the comments that only match the post ID
+        //we are finding all the comments - we need to find the comments that only match the post ID  -- ISSUE HERE
         const commentData = await Comment.findAll();
         const comments = commentData.map((comment) => comment.get({ plain: true }));
-
         res.render('view-post', {post, comments, loggedIn: req.session.loggedIn, scripts });
     } catch (err) {
         console.log(err);

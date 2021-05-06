@@ -1,3 +1,4 @@
+//this function is responsible for creating a new blog post
 const createBlog = async (event) => {
     event.preventDefault();
 
@@ -6,15 +7,12 @@ const createBlog = async (event) => {
     const username = localStorage.getItem("username");
 
     if (title && content) {
-        console.log(title)
-        console.log("This is working!")
         fetch ('/api/post', {
             method: 'POST',
             body: JSON.stringify({ title, content, username }),
             headers: { 'Content-Type': 'application/json' },
         })
         .then(response => {
-            console.log(response);
             if (response.ok) {
                 alert("You have successfully posted your content!");
                 document.location.replace('/dash');
@@ -23,11 +21,9 @@ const createBlog = async (event) => {
                 alert("Post failed!");
             }
         })
-    
     }
 }
 
 document
     .querySelector(".post-tech")
-    //we are running this in our dash.handlebars
     .addEventListener('submit', createBlog)

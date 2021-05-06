@@ -1,3 +1,4 @@
+{{!-- standard html page with linked styuling sheets and header --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +25,6 @@
   </a>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Tech Standards</a>
-    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> --}}
-      {{!-- <span class="navbar-toggler-icon"></span> --}}
     </button>
     <div id="navbarNavAltMarkup">
       <div class="navbar-nav">
@@ -41,14 +39,14 @@
     </div>
   </nav>
 
-
+{{!-- here we render the body from the views  --}}
   {{{body}}}
-
+{{!-- our scripts that will run from the routes --}}
   {{#if scripts}}
   <script src={{scripts}}></script>
   {{/if}}
 
-
+{{!-- what will show when logged in --}}
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}

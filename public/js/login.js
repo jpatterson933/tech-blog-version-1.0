@@ -1,3 +1,4 @@
+//this function is responsible for logging the user in
 const userLogin = async (event) => {
     event.preventDefault();
 
@@ -20,7 +21,7 @@ const userLogin = async (event) => {
         }
     }
 };
-
+//this function is repsonible for creating a new user when they go to sign up
 const signupForm = async (event) => {
     event.preventDefault();
 
@@ -36,6 +37,7 @@ const signupForm = async (event) => {
 
         if (response.ok) {
             localStorage.setItem("username", username)
+            alert("Congratulations, you have signed up!");
             document.location.replace('/');
         } else {
             alert("Signup failed!");
