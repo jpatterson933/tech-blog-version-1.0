@@ -25,9 +25,6 @@ const createComment = async (event) => {
     }
 }
 
-console.log("comment.js status: connected, fileType: javascript  -- ITS ON THE PAGE BUT IT DOESNT WORK!!");
-
 document
     .querySelector(".comment")
-    //we are running this in our dash.handlebars
     .addEventListener('submit', createComment)
