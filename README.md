@@ -59,7 +59,7 @@ NA
 
 # Known Issues/Errors
 
-The one main issue is that all comments are shown no matter what the post.
+The one main issue is that all comments are shown no matter what the post. There is also an issue when the user tries to update their post or delete their post. The funcitonality of the site works, but when deployed to heroku for some reason it shows an error message, fails to reload the page. HOWEVER, it will still update the post and it will still delete the post, it just displays the wrong message and will therefore faile to reload the page. 
 
 [Back to Top](#table-of-contents)
 
