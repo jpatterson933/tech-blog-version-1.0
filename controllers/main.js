@@ -88,7 +88,7 @@ router.delete('/dash/:id', async (req, res) => {
 
         const scripts = "/js/edit-post.js";
 
-        res.render('dash')
+        res.render('edit-post')
     } catch (err) {
         res.status(500).json(err);
     }
@@ -109,7 +109,7 @@ router.put('/dash/:id', async (req, res) => {
             });
         res.status(200).json(post);
         console.log(post)
-        res.render('dash', { post, loggedIn: req.session.loggedIn })
+        res.render('edit-post', { post, loggedIn: req.session.loggedIn })
     } catch (err) {
         res.status(500).json(err);
         console.log(err)
