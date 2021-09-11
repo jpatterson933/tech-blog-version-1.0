@@ -26,7 +26,7 @@ const editPostHandler = async (event) => {
       } else {
         alert('Edit successful!');
         document.location.replace(`/dash`);
-        return;
+        return response.json();
       }
     })
     .catch(err => {
