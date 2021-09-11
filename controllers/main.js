@@ -126,14 +126,12 @@ router.get('/dash/view/:id', async (req, res) => {
     try {
         const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
-        console.log(dbPostData)
         const post = dbPostData.get({ plain: true });
-        console.log(post)
         
         //we are finding all the comments - we need to find the comments that only match the post ID  -- ISSUE HERE
         const commentData = await Comment.findAll();
         const comments = commentData.map((comment) => comment.get({ plain: true }));
-        res.render('dash', { post, comments, loggedIn: req.session.loggedIn, scripts });
+        res.render('view-post', { post, comments, loggedIn: req.session.loggedIn, scripts });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
