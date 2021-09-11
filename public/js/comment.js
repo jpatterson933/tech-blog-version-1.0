@@ -7,8 +7,6 @@ const createComment = async (event) => {
     const username = localStorage.getItem("username");
 
     if (comment) {
-        console.log(comment)
-        console.log("This is working!")
         fetch ('/api/comment', {
             method: 'POST',
             body: JSON.stringify({ comment, username }),
@@ -22,6 +20,9 @@ const createComment = async (event) => {
             } else {
                 alert("Comment failed!");
             }
+        })
+        .catch(err => {
+            console.log(err);
         })
     }
 }

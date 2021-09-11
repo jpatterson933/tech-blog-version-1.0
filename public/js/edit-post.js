@@ -19,15 +19,19 @@ const editPostHandler = async (event) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  });
-  //one issue here is that it does not see the resonse as ok when it is, but will still edit that post. Not sure why....
-  if (!response.ok) {
-    alert('Failed to edit post!');
-  } else {
-    alert('Edit successful!');
-    document.location.replace(`/dash`);
-    return
-  }
+  })
+    .then(response => {
+      if (!response.ok) {
+        alert('Failed to edit post!');
+      } else {
+        alert('Edit successful!');
+        document.location.replace(`/dash`);
+        return;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 //this funciton is repsonible for deleting posts
 const delButtonHandler = async (event) => {
@@ -35,14 +39,19 @@ const delButtonHandler = async (event) => {
     const id = event.target.getAttribute('data-id');
     const res = await fetch(`/dash/${id}`, {
       method: 'DELETE',
-    });
-    if (!res.ok) {
-      alert('Failed to delete!');
-    } else {
-      alert("Your post has been deleted!")
-      document.location.replace('/dash');
-      return;
-    }
+    })
+      .then(res => {
+        if (!res.ok) {
+          alert('Failed to delete!');
+        } else {
+          alert("Your post has been deleted!")
+          document.location.replace('/dash');
+          return;
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 };
 

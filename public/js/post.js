@@ -21,6 +21,9 @@ const createBlog = async (event) => {
                 alert("Post failed!");
             }
         })
+        .catch(err => {
+            console.log(err);
+        })
     }
 }
 
