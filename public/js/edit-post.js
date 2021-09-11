@@ -21,7 +21,7 @@ const editPostHandler = async (event) => {
     },
   })
     .then(response => {
-      if (!response.ok) {
+      if (response.ok) {
         alert('Failed to edit post!');
       } else {
         alert('Edit successful!');
