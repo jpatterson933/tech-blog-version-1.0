@@ -27,12 +27,19 @@ router.get('/', async (req, res) => {
 });
 
 //this route is responible for redirection the user if they are logged in else they will be sent to the login page
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+router.get('/login', async (req, res) => {
+    try {
+        if (req.session.loggedIn) {
+            res.redirect('/');
+            return;
+        } else {
+            res.render('login');
+
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
     }
-    res.render('login');
 })
 //this route is reponsible for rendering the dashboard page based off of whichever user is logged in
 router.get('/dash', async (req, res) => {
@@ -78,14 +85,11 @@ router.delete('/dash/:id', async (req, res) => {
                 id: req.params.id,
             },
         });
-        console.log(postData, "this is the post data!!--------------");
-
         if (!postData) {
             res.status(404).json({ message: 'No post found with this id!' });
             return;
         }
         res.status(200).json(postData);
-
         const scripts = "/js/edit-post.js";
 
         res.render('edit-post')
@@ -96,6 +100,7 @@ router.delete('/dash/:id', async (req, res) => {
 
 //this route will be responsible for updating the posts in the post api
 router.put('/dash/:id', async (req, res) => {
+    console.log(req.body)
     try {
         const post = await Post.update(
             {
@@ -107,8 +112,8 @@ router.put('/dash/:id', async (req, res) => {
                     id: req.params.id,
                 },
             });
-        res.status(200).json(post);
-        console.log(post)
+        // this was throwing the 'cannot set headers after they are sent to client' ERROR
+        // res.status(200).json(post);
         res.render('edit-post', { post, loggedIn: req.session.loggedIn })
     } catch (err) {
         res.status(500).json(err);
@@ -119,14 +124,13 @@ router.put('/dash/:id', async (req, res) => {
 //this route is responsible for grabbing the requested post by its id and ALL COMMENTS (need to figure out how to grab only the comments associated with this post by post_id) --
 router.get('/dash/view/:id', async (req, res) => {
     try {
-
         const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
         const post = dbPostData.get({ plain: true });
         //we are finding all the comments - we need to find the comments that only match the post ID  -- ISSUE HERE
         const commentData = await Comment.findAll();
         const comments = commentData.map((comment) => comment.get({ plain: true }));
-        res.render('view-post', { post, comments, loggedIn: req.session.loggedIn, scripts });
+        res.render('dash', { post, comments, loggedIn: req.session.loggedIn, scripts });
     } catch (err) {
         console.log(err);
         res.status(500).json(err)

@@ -5,7 +5,7 @@ router.get('/', async (req, res) => {
     const dbPostData = await Post.findAll()
     res.json(dbPostData)
     res.render('post')
-})
+}) 
 
 
 //this route is responsible for creating a new post and storing it in our post api

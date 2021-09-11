@@ -10,28 +10,31 @@ const editPostHandler = async (event) => {
   ];
 
   // The Controller will handle this 'put' request when editing a post
-  await fetch(`/dash/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      title,
-      content,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(response => {
-      if (response.ok) {
-        alert('Failed to edit post!');
-      } else {
-        alert('Edit successful!');
-        document.location.replace(`/dash`);
-        return response.json();
-      }
+  try {
+    const response = await fetch(`/dash/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        title,
+        content,
+      }),
+      // this is what updates the text inside of the body
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .catch(err => {
-      console.log(err);
-    })
+    if (!response.ok) {
+      alert('Failed to edit post!');
+    } else {
+      alert('Edit successful!');
+      document.location.replace(`/dash`);
+      return response.json();
+    }
+
+  }
+  catch (err) {
+    res.status(500).json(err);
+
+  }
 }
 //this funciton is repsonible for deleting posts
 const delButtonHandler = async (event) => {
