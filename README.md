@@ -37,6 +37,8 @@ Tech blog is a project that was designed to allow a user to create a profile, lo
 
 To install, you must have VS code installed. From there you can clone the repository located in this readme. Once the application is on your machine, run an npm install to ensure you have all the necessary packages. Then type, node run watch, head to your browser and type in http://localhost:3000 and the application should be fully up and running. For background support, you will need to ensure you have mysql installed, you have a localhost set up.
 
+You will get other errors. You must set up a .env file with the name of the data base, the user and the password to enable database usage and a connection. 
+
 [Back to Top](#table-of-contents)
 
 # Application Usage
