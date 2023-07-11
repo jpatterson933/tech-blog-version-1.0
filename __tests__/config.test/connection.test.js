@@ -32,6 +32,5 @@ describe("Testing our database connection variables", () => {
         }
 
         // check that authenticate was called to establish the connection
-        // expect(sequelize.authenticate).toHaveBeenCalled();
     });
 });
