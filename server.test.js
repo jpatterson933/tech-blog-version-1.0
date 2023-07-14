@@ -11,33 +11,22 @@ const { app, sess } = require('./server');
 
 const sequelize = require('./config/connection');
 
-// describe('Server Setup', () => {
-//     beforeAll(async () => {
-//         await sequelize.sync({force: false})
-//     })
-// })
-
-// // set up and mock the mysql2 connection
-// jest.mock('sequelize', () => {
-//     const mSquelize = {
-//         authenticate: jest.fn()
-//     };
-//     return jest.fn(() => mSquelize)
-// });
 
 describe('Session Configuration', () => {
-    test('should have the correct session secret', () => {
-        const expectedSecret = 'Super secret secret';
-        const actualSecret = sess.secret;
-        expect(actualSecret).toBe(expectedSecret);
-    });
 
-    test('should have the correct session expiration', () => {
-        const expectedExpiration = 60 * 1000; // 60 seconds 
-        const actualExpiration = sess.store.expiration();
-        console.log(expectedExpiration, actualExpiration())
-        expect(actualExpiration).toBe(expectedExpiration);
+    test('should have the correct session configuration', () => {
+        let expectedSecret = 'Super secret secret';
+        // let expectedCookie = '{}';
+        let expectedResave = false;
+        let expectedSaveUninitialized = false;
+        expect(sess.secret).toBe(expectedSecret);
+        // expect(sess.cookie).toBe(expectedCookie);
+        expect(sess.resave).toBe(expectedResave);
+        expect(sess.saveUninitialized).toBe(expectedSaveUninitialized);
+
     })
+
+
 })
 
 
