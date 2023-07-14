@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/jpatterson933/tech-blog-version-1.0/issues"
   },
-  "homepage": "https://github.com/jpatterson933/tech-blog-version-1.0#readme"
+  "homepage": "https://github.com/jpatterson933/tech-blog-version-1.0#readme",
+  "devDependencies": {
+    "supertest": "^6.3.3"
+  }
 }

@@ -13,7 +13,7 @@ describe("Testing our database connection variables", () => {
 
     test('creates and connects to the database correct', () => {
 
-        const sequelize = require('../../config/connection');
+        const sequelize = require('./connection');
 
         // check that Sequelize constructor was called with correct parameters
         if (process.env.JAWSDB_URL) {
