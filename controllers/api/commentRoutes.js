@@ -14,7 +14,10 @@ router.get('/', async (req, res) => {
 });
 
 //this route is responsible for creating a new post and storing it in our post api
+// the above comment is incorrect, this route is for creating a new comment and storing it in our comment api
 router.post('/', async (req, res) => {
+  // console.log(req)
+  // console.log(req.session.user_id, "is this the user id?")
   try {
     await User.findOne({
       where: {
@@ -25,6 +28,9 @@ router.post('/', async (req, res) => {
     const newComment = await Comment.create({
       ...req.body,
       username: req.body.username,
+      user_id: req.session.user_id,
+      post_id: req.body.post_id
+
     });
 
     res.status(200).json(newComment);

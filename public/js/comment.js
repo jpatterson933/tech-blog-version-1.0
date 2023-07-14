@@ -2,14 +2,19 @@
 const createComment = async (event) => {
     event.preventDefault();
 
-    const comment = document.querySelector("#new-blog-content").value;
+    const element = document.getElementById("new-blog-content");
+    const comment = element.value;
+
+    // const comment = document.querySelector("#new-blog-content").value;
+    // const post_id = document.get
     //we store our username to be rendered elsewhere
     const username = localStorage.getItem("username");
+    const post_id = element.dataset.postid;
 
     if (comment) {
         fetch('/api/comment', {
             method: 'POST',
-            body: JSON.stringify({ comment, username }),
+            body: JSON.stringify({ comment, username, post_id }),
             headers: { 'Content-Type': 'application/json' },
         })
             .then(response => {

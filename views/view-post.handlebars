@@ -24,7 +24,7 @@
 <div class="card all-cards">
     <form class="comment">
             <div class="form-group">
-                <input type="input" class="form-control" id="new-blog-content" rows="3" placeholder="New comment..."></input>
+                <input type="input" class="form-control" data-postid={{post.id}} id="new-blog-content" rows="3" placeholder="New comment..."></input>
             </div>
             <button href="/dash/view/{{post.id}}" class="btn-primary" type="submit">Leave Comment</button>
     </form>

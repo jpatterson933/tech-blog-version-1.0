@@ -123,13 +123,18 @@ router.put('/dash/:id', async (req, res) => {
 
 //this route is responsible for grabbing the requested post by its id and ALL COMMENTS (need to figure out how to grab only the comments associated with this post by post_id) --
 router.get('/dash/view/:id', async (req, res) => {
+    // console.log(req, "request")
     try {
         const scripts = "/js/comment.js";
         const dbPostData = await Post.findByPk(req.params.id);
         const post = dbPostData.get({ plain: true });
         
         //we are finding all the comments - we need to find the comments that only match the post ID  -- ISSUE HERE
-        const commentData = await Comment.findAll();
+        const commentData = await Comment.findAll({
+            where: {
+                post_id: req.params.id
+            }
+        });
         const comments = commentData.map((comment) => comment.get({ plain: true }));
         res.render('view-post', { post, comments, loggedIn: req.session.loggedIn, scripts });
     } catch (err) {
