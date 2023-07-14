@@ -100,7 +100,7 @@ router.delete('/dash/:id', async (req, res) => {
 
 //this route will be responsible for updating the posts in the post api
 router.put('/dash/:id', async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const post = await Post.update(
             {

@@ -7,7 +7,7 @@ const { Sequelize } = require('sequelize');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const {app, sess} = require('./server');
+const { app, sess } = require('./server');
 
 const sequelize = require('./config/connection');
 
@@ -30,6 +30,13 @@ describe('Session Configuration', () => {
         const expectedSecret = 'Super secret secret';
         const actualSecret = sess.secret;
         expect(actualSecret).toBe(expectedSecret);
+    });
+
+    test('should have the correct session expiration', () => {
+        const expectedExpiration = 60 * 1000; // 60 seconds 
+        const actualExpiration = sess.store.expiration();
+        console.log(expectedExpiration, actualExpiration())
+        expect(actualExpiration).toBe(expectedExpiration);
     })
 })
 
@@ -56,5 +63,5 @@ describe('Test Express Server', () => {
         expect(response.status).toBe(200);
     });
 
-    
+
 });

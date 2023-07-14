@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
             res
             .status(200)
             .json(dbUserInfo);
-            console.log(dbUserInfo);
+            // console.log(dbUserInfo);
         });
 
     } catch (err) {

@@ -17,7 +17,7 @@
     "sequelize": "^6.6.2"
   },
   "scripts": {
-    "test": "jest --silent --detectOpenHandles",
+    "test": "jest --detectOpenHandles",
     "start": "node server.js",
     "watch": "nodemon"
   },
