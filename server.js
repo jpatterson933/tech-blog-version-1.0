@@ -24,7 +24,7 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({ });
+const hbs = exphbs.create({});
 
 // Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
@@ -42,4 +42,4 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`I can hear your thoughts now...on PORT: ${PORT}`));
 });
 
-module.exports = app;
+module.exports = { app, sess };
