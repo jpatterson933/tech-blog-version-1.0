@@ -1,3 +1,17 @@
+async function fetchLogin(username, password, stayLogged) {
+    try {
+        const response = await fetch('/api/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ username, password, stayLogged }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        return response;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
 //this function is responsible for logging the user in
 const userLogin = async (event) => {
     event.preventDefault();
@@ -7,11 +21,7 @@ const userLogin = async (event) => {
     const stayLogged = document.querySelector("#stay-logged").value;
 
     if (username && password) {
-        const response = await fetch('/api/user/login', {
-            method: 'POST',
-            body: JSON.stringify({ username, password, stayLogged }),
-            headers: { 'Content-Type': 'application/json' },
-        });
+        let response = await fetchLogin(username, password, stayLogged);
 
         if (response.ok) {
             localStorage.setItem("username", username)
@@ -21,6 +31,20 @@ const userLogin = async (event) => {
         }
     }
 };
+
+async function fetchSignup(username, password) {
+    try {
+        const response = await fetch('/api/user', {
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        return response;
+    } catch (err) {
+        console.log(err);
+    }
+}
 //this function is repsonible for creating a new user when they go to sign up
 const signupForm = async (event) => {
     event.preventDefault();
@@ -28,24 +52,17 @@ const signupForm = async (event) => {
     const username = document.querySelector("#user-signup").value.trim();
     const password = document.querySelector("#password-signup").value.trim();
 
+    // This regex pattern makes sure that a provided string has at least 1 uppercase, lowercase, and number.
+    const pattern = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$');
     if (username && password) {
-        const response = await fetch('/api/user', {
-            method: 'POST',
-            body: JSON.stringify({ username, password }),
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then(response => {
-                if (response.ok) {
-                    localStorage.setItem("username", username)
-                    alert("Congratulations, you have signed up!");
-                    document.location.replace('/');
-                } else {
-                    alert("Signup failed!");
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        let response = await fetchSignup(username, password);
+        if (response.ok) {
+            localStorage.setItem("username", username)
+            alert("Congratulations, you have signed up!");
+            document.location.replace('/');
+        } else {
+            alert("Signup failed!");
+        }
     }
 }
 
