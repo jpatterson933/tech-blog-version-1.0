@@ -32,9 +32,9 @@ const createBlog = async (event) => {
             }
         }
     } catch (err) {
-        console.error(err)
-    }
-}
+        console.error(err);
+    };
+};
 
 document
     .querySelector(".post-tech")
