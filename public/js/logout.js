@@ -18,7 +18,7 @@ const logout = async () => {
         alert('You have logged out!!');
     } else {
         alert('Failed to log out');
-    }
+    };
 
 };
 
