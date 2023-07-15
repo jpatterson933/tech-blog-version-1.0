@@ -6,6 +6,7 @@ const { User, Post, Comment } = require('../models');
 router.get('/login', async (req, res) => {
     try {
         res.render('login');
+        res.status(200);
 
     } catch (err) {
         console.log(err);
