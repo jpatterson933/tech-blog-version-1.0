@@ -8,9 +8,8 @@ async function fetchLogin(username, password, stayLogged) {
         return response;
     } catch (err) {
         console.log(err);
-    }
-}
-
+    };
+};
 
 //this function is responsible for logging the user in
 const userLogin = async (event) => {
@@ -24,12 +23,12 @@ const userLogin = async (event) => {
         let response = await fetchLogin(username, password, stayLogged);
 
         if (response.ok) {
-            localStorage.setItem("username", username)
+            localStorage.setItem("username", username);
             document.location.replace('/');
         } else {
             alert("Failed to Login");
-        }
-    }
+        };
+    };
 };
 
 async function fetchSignup(username, password) {
@@ -39,12 +38,11 @@ async function fetchSignup(username, password) {
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' }
         });
-
         return response;
     } catch (err) {
         console.log(err);
-    }
-}
+    };
+};
 //this function is repsonible for creating a new user when they go to sign up
 const signupForm = async (event) => {
     event.preventDefault();
@@ -57,19 +55,19 @@ const signupForm = async (event) => {
     if (username && password) {
         let response = await fetchSignup(username, password);
         if (response.ok) {
-            localStorage.setItem("username", username)
+            localStorage.setItem("username", username);
             alert("Congratulations, you have signed up!");
             document.location.replace('/');
         } else {
             alert("Signup failed!");
-        }
-    }
-}
+        };
+    };
+};
 
 document
     .querySelector(".login-form")
-    .addEventListener('submit', userLogin)
+    .addEventListener('submit', userLogin);
 
 document
     .querySelector(".signup")
-    .addEventListener('submit', signupForm)
+    .addEventListener('submit', signupForm);
