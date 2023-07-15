@@ -20,6 +20,7 @@ const sess = {
         expiration: 60 * 1000  // The maximum age (in milliseconds) of a valid session (60seconds)
     })
 };
+console.log(sess, "session--------")
 
 app.use(session(sess));
 

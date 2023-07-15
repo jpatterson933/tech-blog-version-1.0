@@ -4,10 +4,10 @@ const { User, Post, Comment } = require('../models');
 
 //this route is reponsible for rendering the login page
 router.get('/login', async (req, res) => {
+    console.log(res)
     try {
         res.render('login');
         res.status(200);
-
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
