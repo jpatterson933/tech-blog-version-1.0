@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 ## [CLICK HERE FOR DEMO VIDEO](https://www.youtube.com/watch?v=ID8xS5c_zVU)
 
@@ -55,7 +55,7 @@ Please submit anything for review through github.
 
 # Testing Instrutions
 
-NA
+I am working on implementing tests using jest. 
 
 [Back to Top](#table-of-contents)
 
