@@ -36,4 +36,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-module.exports = { app, sess };
+module.exports = app;
