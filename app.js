@@ -21,7 +21,6 @@ const sess = {
     })
 };
 
-
 app.use(session(sess));
 
 const hbs = exphbs.create({});
@@ -37,4 +36,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-module.exports = app;
+module.exports = { app, sess };
