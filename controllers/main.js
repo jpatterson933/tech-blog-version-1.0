@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
         const post = dbPostData.map((posts) => posts.get({ plain: true }));
         //it will render the home page, the posts and the user who is logged in
         res.render('home', { post, loggedIn: req.session.loggedIn });
+        res.status(200);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -35,7 +36,6 @@ router.get('/login', async (req, res) => {
             return;
         } else {
             res.render('login');
-
         }
     } catch (err) {
         console.log(err)
@@ -54,7 +54,8 @@ router.get('/dash', async (req, res) => {
         });
         let myPost = userData.get({ plain: true });
         myPost = myPost.posts;
-        res.render('dash', { myPost, loggedIn: req.session.loggedIn })
+        res.render('dash', { myPost, loggedIn: req.session.loggedIn });
+        res.status(200);
     }
     catch (err) {
         console.log(err);
